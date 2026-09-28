@@ -312,44 +312,25 @@ async function startTelegram() {
     console.log("");
 
 
-    // --------------------------------
-    // Find FLT Looters
-    // --------------------------------
+   // --------------------------------
+// Find FLT Looters
+// --------------------------------
 
-    console.log(
-        "Searching for FLT Looters..."
-    );
+console.log("Searching for FLT Looters...");
+console.log("");
 
-    console.log("");
+const dialogs = await client.getDialogs({});
 
-
-    const dialogs = await client.getDialogs({});
-
-
-    fltChannel = null;
-
-
-    for (const dialog of dialogs) {
-
-        if (!dialog.name) {
-            continue;
-        }
-
-
-        console.log(
-            "Found:",
-            dialog.name
-        );
-
-
-        console.log("Searching for FLT Looters...");
-
-let fltChannel = null;
+fltChannel = null;
 
 for (const dialog of dialogs) {
-    const name = (dialog.name || "").trim();
+    if (!dialog.name) {
+        continue;
+    }
 
-    console.log(`Found: ${name}`);
+    const name = dialog.name.trim();
+
+    console.log("Found:", name);
 
     const normalizedName = name
         .toLowerCase()
@@ -357,50 +338,34 @@ for (const dialog of dialogs) {
 
     if (normalizedName === "fltlooters") {
         fltChannel = dialog.entity;
+
         console.log(`✅ MATCHED: ${name}`);
+
         break;
     }
 }
 
+// --------------------------------
+// Channel not found
+// --------------------------------
+
 if (!fltChannel) {
+    console.log("");
     console.error("❌ FLT Looters not found.");
+    console.log("");
+
     process.exit(1);
 }
 
-console.log("✅ FLT Looters channel selected.");
-        
+// --------------------------------
+// Channel found
+// --------------------------------
 
-    }
-
-
-    // --------------------------------
-    // Channel not found
-    // --------------------------------
-
-    if (!fltChannel) {
-
-        console.log("");
-
-        console.log(
-            "❌ FLT Looters not found."
-        );
-
-        console.log("");
-
-        process.exit(1);
-
-    }
-
-
-    // --------------------------------
-    // Channel found
-    // --------------------------------
-
-    console.log("");
-    console.log("================================");
-    console.log("✅ FLT Looters FOUND!");
-    console.log("================================");
-    console.log("");
+console.log("");
+console.log("================================");
+console.log("✅ FLT Looters FOUND!");
+console.log("================================");
+console.log("");  
 
 
     // --------------------------------
