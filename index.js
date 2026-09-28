@@ -342,22 +342,33 @@ async function startTelegram() {
         );
 
 
-        const normalizedName =
-            dialog.name
-                .toLowerCase()
-                .replace(/\s+/g, "");
+        console.log("Searching for FLT Looters...");
 
+let fltChannel = null;
 
-        if (
-            normalizedName.includes(
-                "FLTlooters"
-            )
-            // amazinglootsdealsoffers
-        ) {
+for (const dialog of dialogs) {
+    const name = (dialog.name || "").trim();
 
-            fltChannel = dialog.entity;
+    console.log(`Found: ${name}`);
 
-        }
+    const normalizedName = name
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "");
+
+    if (normalizedName === "fltlooters") {
+        fltChannel = dialog.entity;
+        console.log(`✅ MATCHED: ${name}`);
+        break;
+    }
+}
+
+if (!fltChannel) {
+    console.error("❌ FLT Looters not found.");
+    process.exit(1);
+}
+
+console.log("✅ FLT Looters channel selected.");
+        
 
     }
 
