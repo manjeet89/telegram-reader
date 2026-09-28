@@ -350,8 +350,9 @@ async function startTelegram() {
 
         if (
             normalizedName.includes(
-                "amazinglootsdealsoffers"
+                "FLTlooters"
             )
+            // amazinglootsdealsoffers
         ) {
 
             fltChannel = dialog.entity;
