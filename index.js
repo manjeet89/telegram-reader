@@ -350,7 +350,7 @@ async function startTelegram() {
 
         if (
             normalizedName.includes(
-                "fltlooters"
+                "amazinglootsdealsoffers"
             )
         ) {
 
